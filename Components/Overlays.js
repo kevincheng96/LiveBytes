@@ -15,36 +15,32 @@ import {
 } from 'react-native';
 
 export default class Overlays extends Component {
+  constructor(props) {
+	  super(props);
+	  this.items = [{id: 1, name: 'item1', top: 20}, {id: 2, name: 'item2', top: 40}];
+	}
+
   render() {
+  	//gets the custom style for each time
+		var getStyle = function(item) {
+			return (
+				{
+					top: item.top
+				}
+			)
+		}
 		//ng-repeat over all overlay items (get items using Firebase)
-		// var listItems = this.props.items.map(function(item) {
-		//   return (
-		//     <li key={item.name} style={getStyle(item)}>
-		//       <a href={item.link}>{item.name}</a>
-		//     </li>
-		//   )
-		// })
+		var listItems = this.items.map(function(item) {
+		  return (
+		    <Text key={item.id} style={getStyle(item)}>{item.name}</Text>
+		  )
+		})
 
     return (
       <View style={styles.container}>
-          <Text style={styles.overlay}>This is an overlay</Text>
+          {listItems}
       </View>
     );
-  }
-
-	//gets the custom style for each tiem
-	getStyle(item) {
-		return (
-			{
-				top: item.top
-			}
-		)
-	}
-
-  takePicture() {
-    this.camera.capture()
-      .then((data) => console.log(data))
-      .catch(err => console.error(err));
   }
 }
 

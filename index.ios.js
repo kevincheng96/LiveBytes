@@ -8,6 +8,7 @@
 
 import React, { Component } from 'react';
 import Camera from 'react-native-camera';
+import Overlays from './Components/Overlays.js'
 import {Accelerometer, Gyroscope, Magnetometer} from 'NativeModules';
 import {
   AppRegistry,
@@ -43,6 +44,9 @@ export default class livebytes extends Component {
     Accelerometer.startAccelerometerUpdates(); // you'll start getting AccelerationData events above
   }
 
+  // <TouchableHighlight style={styles.highlight}>
+    //   <Text>Flip</Text>
+  // </TouchableHighlight>
   render() {
     return (
       <View style={styles.container}>
@@ -51,9 +55,9 @@ export default class livebytes extends Component {
           style={styles.preview}
           aspect={Camera.constants.Aspect.fill}>
         </Camera>
-        <TouchableHighlight style={styles.highlight}>
-          <Text>Flip</Text>
-        </TouchableHighlight>
+        <View style={styles.floatView}>
+          <Overlays></Overlays>
+        </View>
       </View>
     );
   }
@@ -73,15 +77,10 @@ const styles = StyleSheet.create({
     height: Dimensions.get('window').height,
     width: Dimensions.get('window').width
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+  floatView: { // this is where the overlays are going to be
+    position: 'absolute',
+    height: Dimensions.get('window').height,
+    width: Dimensions.get('window').width
   },
   highlight: {
     justifyContent: 'flex-end'

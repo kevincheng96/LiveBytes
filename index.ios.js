@@ -8,7 +8,7 @@
 
 import React, { Component } from 'react';
 import Camera from 'react-native-camera';
-import Overlays from './Components/Overlays.js'
+import Overlays from './Components/Overlays.js';
 import {Accelerometer, Gyroscope, Magnetometer} from 'NativeModules';
 import {
   AppRegistry,
@@ -28,22 +28,7 @@ export default class livebytes extends Component {
     super(props);
     this.state = {cameraType: Camera.constants.Type.back};
   }
-
-  componentDidMount() {
-    Accelerometer.setAccelerometerUpdateInterval(0.1); // in seconds
-    console.log('test')
-    DeviceEventEmitter.addListener('AccelerationData', function (data) {
-      /**
-      * data.acceleration.x
-      * data.acceleration.y
-      * data.acceleration.z
-      **/
-      console.log('acceleration x is')
-      console.log(data.acceleration.x)
-    });
-    Accelerometer.startAccelerometerUpdates(); // you'll start getting AccelerationData events above
-  }
-
+  
   // <TouchableHighlight style={styles.highlight}>
     //   <Text>Flip</Text>
   // </TouchableHighlight>
